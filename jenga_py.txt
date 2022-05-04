@@ -1,0 +1,329 @@
+#############1################Write a program to copy image file
+se=open("C:\\Users\\a2z\\Desktop\\fuf.jpg","rb")
+new=open("C:\\Users\\a2z\\Desktop\\fu#ck.jpg","wb")
+new.write(se.read())
+se.close()
+new.close()
+#############2################Write a program to copy video file using threads.
+import threading
+se=open("C:\\Users\\a2z\\Videos\\21FCS023_15_PAVAN_BAGWE.pdf","rb")
+new=open("C:\\Users\\a2z\\Desktop\\fuck.pdf","wb")
+def thr():
+    new.write(se.read())
+thr=threading.Thread(target=thr)
+thr.start()
+se.close()
+new.close()
+############3################Write a program to demonstrate locks in thread.
+"its nuts dont expect this code to be here" 
+#############4###############Write a program to create database using Python
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE DATABASE mydatabase")
+#####################5############# Write a program to create database using Python
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))")
+#####################6############# Write a program to create TABLE using Python
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM customers")
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+################### 7 ###################  Write a program to handle runtime exceptions
+randomList = [10,'a', 0, 2]
+
+for i in randomList:
+    try:
+        print("The entry is", i)
+        r = 1/int(i)
+    except Exception as e:
+        print("Oops!", e, "occurred.")
+    else:    
+        print("The reciprocal of", i, "is", r)
+    finally:
+        print()
+input()
+#################### 8 ################   Write a program to read integer value from file and print sum, throw an exception if file
+fn=input('Enter File Name with extension:')
+try:
+    f=open(fn,'r')
+    sum=0
+    for data in f:
+        sum=sum+int(data)
+except FileNotFoundError:
+    print('Wrong File name Entered')
+except ValueError:
+    print('File containing a non-int element')
+else:
+    print('Sum of all numbers:=',sum)
+    f.close()
+
+input()
+###################  9  ###############   Write a program to print sum of even numbers and print exception if number is not even.
+
+ try:
+    sum=0
+    for i in range(5):
+        n=int(input('Enter Even number:'))
+        if n%2!=0:
+            raise Exception( "Enter only Even Number")
+        else:
+            sum=sum+n
+except Exception as e:
+    print(e)
+else:        
+    print('Sum:',sum)
+input()
+
+################  10  #########      Write a program to calculate simple interest,
+
+def simple_interest(amount, year, rate):
+    try:
+        if rate > 100:
+            raise ValueError(rate)
+        interest = (amount * year * rate) / 100
+        print('The Simple Interest is', interest)
+    except ValueError:
+        print('interest rate is out of range', rate)
+
+print('Case 1')
+simple_interest(800, 6, 8)
+
+print('Case 2')
+simple_interest(800, 6, 800)
+input()
+############# 11  #######11. Create a class Circle constructed by radius
+class Circle:
+    pi=3.14
+    def __init__(self, r):
+        self.radius = r     
+    def area(self):
+        return self.radius**2*Circle.pi
+    def perimeter(self):
+        return 2*self.radius*Circle.pi
+
+c=[]
+for i in range(3):
+    r=int(input("Enter radius"))
+    c.append(Circle(r))
+for i in c:
+    print("Area of Circle:",i.area())
+    print("Perimeter of Circle:",i.perimeter())
+
+input()
+###############  12  #######   Write a program to demonstrate constructor and destructor.
+
+class Emp:
+    empcount=0
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+        Emp.empcount+=1
+    def dispEmp(self):
+      print ("Name : ", self.name,  "\nSalary: ", self.salary)
+    def __del__(self):
+        print("Object Removed")
+        Emp.empcount-=1
+emp1 = Emp("Sam", 72000)
+emp2 = Emp("Ram", 40000)
+emp1.dispEmp()
+emp2.dispEmp()
+print("Total Number of Employee:",Emp.empcount)
+del emp1
+print("Total Number of Employee:",Emp.empcount)
+
+input()
+
+#################  13 #######  Write a program to implement multilevel inheritance.
+class Stud:
+    def __init__(self,rn,name):
+        self.rn=rn
+        self.name=name
+class Marks(Stud):
+    def __init__(self, rn,name,m1,m2):
+        Stud.__init__(self, rn, name)
+        self.m1=m1
+        self.m2=m2
+    def calc(self):
+        self.tot=self.m1+self.m2
+        self.per=(self.tot*100)/200
+class Result(Marks):
+    def __init__(self,rn,name,m1,m2):
+        Marks.__init__(self, rn, name,m1, m2)
+    def disp(self):
+        self.calc()
+        if self.m1<40 or self.m2<40:
+            print(self.name,"Result:Fail")
+        elif self.per<60:
+            print(self.name,"Pass with Grade B")
+        elif self.per < 70:
+            print(self.name,"Pass with Grade A")
+        else:
+            print(self.name,"Pass with Grade O")
+s1=Result(1,"Sam",78,90)
+s2=Result(1,"Ram",28,40)
+
+s1.disp()
+s2.disp()
+input()
+##################### 14 ######  Write a program to demonstrate operator overloading.
+class Data:
+    def __init__(self,n):
+        self.n=n
+    def  __gt__(self, other):
+        if self.n > other.n:
+            return True
+        else:
+            return False
+    def __add__(self, other):
+        return(self.n+other.n)
+
+d1=Data(10)
+d2=Data(3)
+print("Addition of two objects:",d1+d2)
+print("Largest from two objects:")
+if d1 > d2:
+    print(d1.n,"is greater")
+else:
+    print(d2.n," is greater")
+input()
+#############  15 ######## Write a program to define a class Shape with abstract
+from abc import ABC,abstractmethod
+class Shape(ABC):
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+    @abstractmethod
+    def area(self):
+        pass
+class Rect(Shape):
+    def __init__(self,x,y):
+        Shape.__init__(self,x,y)
+    def area(self):
+        return(self.x*self.y)
+class Tri(Shape):
+    def __init__(self, x, y):
+        Shape.__init__(self, x, y)
+
+    def area(self):
+        return (self.x * self.y)/2
+r=Rect(2,3)
+t=Tri(5,6)
+print("Area of Rect:",r.area())
+print("Area of Tri:",t.area())
+#############  16 ###############  Write a program to demonstrate method overriding.
+class Time:
+    def __init__(self,hr,min,sec):
+        self.hr=hr
+        self.min=min
+        self.sec=sec
+    def print(self):
+        print("Super Class Method Called",self.hr,":",self.min,":",self.sec)
+
+class Clock(Time):
+    def __init__(self,hr,min,sec):
+        Time.__init__(self, hr, min, sec)
+    def print(self):
+        super().print()
+        if self.hr<12:
+            self.str="AM"
+        else:
+            self.str="PM"
+        print("Sub Class Method Called",self.hr,":",self.min,":",self.sec,self.str)
+
+c=Clock(12,40,30)
+c.print()
+################### 17 #############Write a program to create GUI to input a
+from tkinter import *
+def submit():
+    us=int( entry.get())
+    if us%2==0:
+        new=Tk()
+        li=Label(new,text="number is even").pack()
+        new.mainloop()
+    else:
+        new=Tk()
+        li=Label(new,text="number is odd").pack()
+        new.mainloop()
+window = Tk()
+entry = Entry(window,font=("Arial",50),fg="#00FF00",bg="black")
+entry.pack(side=LEFT)
+submit_button = Button(window,text="submit",command=submit)
+submit_button.pack(side=RIGHT)
+window.mainloop()
+###################  18  ############  Write a program to create a GUI to add
+from tkinter import *
+def submit():
+    us=int( entry.get())
+    us2=int( entry2.get())
+    us3=str(us+us2)
+    new=Tk()
+    li=Label(new,text="the addition is "+us3,font=("Arial",25)).pack()
+    new.mainloop()
+
+window = Tk()
+entry = Entry(window,font=("Arial",25),fg="#00FF00",bg="black")
+entry.pack(side=LEFT)
+entry2= Entry(window,font=("Arial",25),fg="#00FF00",bg="black")
+entry2.pack(side=LEFT)
+submit_button = Button(window,text="add",command=submit)
+submit_button.pack(side=RIGHT)
+
+window.mainloop()
+
+###################  19  ############ re age
+import re
+str= """Sam is 15 years old, and Anu is 27 years old.
+Avi is 67 years old, and his grandfather, Ram is 102"""
+name=re.findall('[A-Z][a-z]*',str)
+age=re.findall('[0-9]+',str)
+for i in range (len(name)):
+	voe=age[i]
+	print(name[i],"age is",voe)
+########## 20 #############Replacing white spaces with ‘_’character.
+s = "pavan potato"
+replaced = re.sub(' ', '_', s)
+######### 20 ######### To split lines
+import re
+s = """pavan is potato brain with
+typing speed of 15 """
+replaced = re.split('\n',s)
+print (replaced)
+######### 21 ######### zipo
+from zipfile import *
+f = ZipFile('d:\\test.zip', 'w', ZIP_DEFLATED)
+f.write('d:\\myfile.txt')
+f.write('d:\\myfile1.txt')
+f.write('d:\\myfile2.txt')
+print('test.zip file created...')
+f.close()
